@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UsersBase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Users DataBase" Height="450" Width="800" Background="#FFFFEC96" FontSize="24">
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="UserDBLib.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		<ListView Name="listView" ItemsSource="{Binding}">
+			<ListView.View> 
+				<GridView>
+					<GridViewColumn DisplayMemberBinding="{Binding Path=ID_USER}" Header="ID" Width="100" />
+					<GridViewColumn DisplayMemberBinding="{Binding Path=login}" Header="Login" Width="200" />
+					<GridViewColumn DisplayMemberBinding="{Binding Path=password}" Header="Password" Width="200" />
+					<GridViewColumn DisplayMemberBinding="{Binding Path=adress}" Header="Adress" Width="200" />
+					<GridViewColumn DisplayMemberBinding="{Binding Path=phone}" Header="Phone" Width="200" />
+					<GridViewColumn DisplayMemberBinding="{Binding Path=admin}" Header="Admin" Width="100" />
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="0" Width="150" Height="50" Margin="30 30" Click="Update_Click">Update</Button>
+			<Button Grid.Column="1" Width="150" Height="50" Margin="30 30" Click="AddUser_Click">Add User</Button>
+			<Button Grid.Column="2" Width="150" Height="50" Margin="30 30" Click="Delete_Click">Delete</Button>
+			<Viewbox Grid.Column="3" Margin="30 10">
+				<StackPanel Orientation="Vertical">
+					<RadioButton Checked="RadioButton_Checked">Admin</RadioButton>
+					<RadioButton Checked="RadioButton_Checked" >No Admin</RadioButton>
+					<RadioButton Checked="RadioButton_Checked" IsChecked="True" >All</RadioButton>
+				</StackPanel>
+			</Viewbox>
+		</Grid>
+	</Grid>
 </Window>
